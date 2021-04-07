@@ -1,14 +1,10 @@
+import 'dart:ffi';
+import 'dart:io';
 
-import 'dart:async';
+final DynamicLibrary nativeInteropLib = Platform.isAndroid
+    ? DynamicLibrary.open("libnative_interop.so")
+    : DynamicLibrary.process();
 
-import 'package:flutter/services.dart';
-
-class NativeInterop {
-  static const MethodChannel _channel =
-      const MethodChannel('native_interop');
-
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-}
+final int Function(int x, int y) nativeAdd = nativeInteropLib
+    .lookup<NativeFunction<Int32 Function(Int32, Int32)>>("native_add")
+    .asFunction();
