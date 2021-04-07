@@ -24,3 +24,19 @@ typedef _dart_NativeSyncCallback = void Function(
 final _dart_NativeSyncCallback nativeSyncCallback = nativeInteropLib
     .lookup<NativeFunction<_c_NativeSyncCallback>>("NativeSyncCallback")
     .asFunction();
+
+/* ---------------------------------------------------------------- */
+
+typedef NativeAsyncCallbackFunc = Void Function();
+
+typedef _c_NativeAsyncCallback = Void Function(
+  Pointer<NativeFunction<NativeAsyncCallbackFunc>> callback,
+);
+
+typedef _dart_NativeAsyncCallback = void Function(
+  Pointer<NativeFunction<NativeAsyncCallbackFunc>> callback,
+);
+
+final _dart_NativeAsyncCallback nativeAsyncCallback = nativeInteropLib
+    .lookup<NativeFunction<_c_NativeAsyncCallback>>("NativeAsyncCallback")
+    .asFunction();

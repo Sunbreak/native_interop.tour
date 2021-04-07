@@ -38,6 +38,13 @@ class _MyAppState extends State<MyApp> {
                 nativeSyncCallback(exceptionalFunc);
               },
             ),
+            RaisedButton(
+              child: Text('nativeAsyncCallback'),
+              onPressed: () {
+                var asyncFunc = Pointer.fromFunction<NativeAsyncCallbackFunc>(asyncCallback);
+                nativeAsyncCallback(asyncFunc);
+              },
+            ),
           ],
         ),
       ),
@@ -57,4 +64,10 @@ int normalSyncCallback(int n) {
 int exceptionalSyncCallback(int n) {
   print('exceptionalSyncCallback called');
   return n ~/ 0;
+}
+
+/* ---------------------------------------------------------------- */
+
+void asyncCallback() {
+  print('asyncCallback called');
 }

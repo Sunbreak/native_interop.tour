@@ -5,4 +5,5 @@ add_library(native_interop
             SHARED
             # Provides a relative path to your source file(s).
             ../ios/Classes/native_add.c
-            ../ios/Classes/native_sync_callback.cpp)
+            ../ios/Classes/native_sync_callback.cpp
+            ../ios/Classes/native_async_callback.cpp)
