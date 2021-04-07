@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:ffi';
 
+import 'package:flutter/material.dart';
 import 'package:native_interop/native_interop.dart';
 
 void main() {
@@ -12,7 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,10 +20,41 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('nativeAdd(1, 2) = ${nativeAdd(1, 2)}'),
+        body: Column(
+          children: [
+            RaisedButton(
+              child: Text('nativeAdd'),
+              onPressed: () {
+                print('nativeAdd(1, 2) = ${nativeAdd(1, 2)}');
+              },
+            ),
+            RaisedButton(
+              child: Text('nativeSyncCallback'),
+              onPressed: () {
+                var normalFunc = Pointer.fromFunction<NativeSyncCallbackFunc>(normalSyncCallback, syncExceptionalReturn);
+                nativeSyncCallback(normalFunc);
+
+                var exceptionalFunc = Pointer.fromFunction<NativeSyncCallbackFunc>(exceptionalSyncCallback, syncExceptionalReturn);
+                nativeSyncCallback(exceptionalFunc);
+              },
+            ),
+          ],
         ),
       ),
     );
   }
+}
+
+// Should be constant
+const syncExceptionalReturn = -1;
+
+// Should be top level function
+int normalSyncCallback(int n) {
+  print('normalSyncCallback called');
+  return n * n;
+}
+
+int exceptionalSyncCallback(int n) {
+  print('exceptionalSyncCallback called');
+  return n ~/ 0;
 }
