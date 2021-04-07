@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:native_interop/native_interop.dart';
 
 void main() {
+  ensureNativeInitialized();
   runApp(MyApp());
 }
 

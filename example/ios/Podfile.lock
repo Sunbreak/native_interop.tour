@@ -14,8 +14,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/native_interop/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  native_interop: 6daebb52322c7a8be974c044d33296b2510761be
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  native_interop: a54e1750c6b79921d26d01f269b84b268c3f5485
 
 PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
 
