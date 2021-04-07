@@ -21,6 +21,6 @@ A new flutter plugin project.
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
 
-  # Fix ObjC project symbol not found
-  s.user_target_xcconfig = { 'OTHER_LDFLAGS' => '-ObjC -all_load' }
+  # Fix ObjC project symbol not found & missing C++ dependency
+  s.user_target_xcconfig = { 'OTHER_LDFLAGS' => '-ObjC -all_load -lc++' }
 end
